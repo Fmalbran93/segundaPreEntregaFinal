@@ -229,4 +229,32 @@ routerViews.get("/home", async (req, res) => {
   }
 });
 
+routerViews.get("/login", (req, res) => {
+  try {
+    res.render("login");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+routerViews.get("/register", (req, res) => {
+  try {
+    res.render("register");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+routerViews.get("/user-profile", (req, res) => {
+  try {
+    if (!req.session.login) {
+      return res.redirect("/login");
+    }
+    res.render("userProfile");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+
 export default routerViews;
